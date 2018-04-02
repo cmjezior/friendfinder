@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Fiend Finder Survey</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <br />
+      <br />
+        <br />
+    <div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><strong>Add Characters</strong></h3>
+        </div>
+        <div class="panel-body">
+          <form method="POST" role="form" id="myForm">
+
+            <div class="form-group">
+              <label for="name">Name (required)</label>
+              <input type="text" class="form-control" id="name" required>
+            </div>
+
+            <div class="form-group">
+              <label for="role">Photo Link (required)</label>
+              <input type="text" id="photo" class="form-control" required>
+            </div>
+
+
+        <div class="form-group" id=q1>
+            <div class="form-check">
+              <h3>Crocs are:</h3>
+              <input class="form-check-input" type="radio" name="crocs" value="1">
+              <label class="form-check-label" for="q1">
+                comfortable
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="crocs" value="5">
+              <label class="form-check-label" for="q1">
+                hideous
+              </label>
+            </div>
+          </div>
+      <div class="form-group" id=q2>
+            <div class="form-check" >
+              <h3>I am a ______ person:</h3>
+              <input class="form-check-input" type="radio" name="person" value="1">
+              <label class="form-check-label" for="q2">
+                night
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="person"  value="5">
+              <label class="form-check-label" for="q2">
+                morning
+              </label>
+            </div>
+      </div>
+      <div class="form-group" id=q3>
+            <div class="form-check">
+              <h3>I cut my sandwiches into:</h3>
+              <input class="form-check-input" type="radio" name="sandwich" value="1">
+              <label class="form-check-label" for="q3">
+                triangles
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="sandwich" value="5">
+              <label class="form-check-label" for="q3">
+                rectangles
+              </label>
+            </div>
+          </div>
+          <div class="form-group" id=q4>
+            <div class="form-check">
+              <h3>Toilet paper rolls should hang:</h3>
+              <input class="form-check-input" type="radio" name="toilet" value="1">
+              <label class="form-check-label" for="q4">
+                under
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="toilet" value="5">
+              <label class="form-check-label" for="q4">
+                over
+              </label>
+            </div>
+          </div>
+          <div class="form-group" id=q5>
+
+            <div class="form-check">
+              <h3>gif is pronounced with a:</h3>
+              <input class="form-check-input" type="radio" name="gif" value="1">
+              <label class="form-check-label" for="q5">
+                hard G, as in gift
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="gif" value="5">
+              <label class="form-check-label" for="q5">
+                J, like the PB jif
+              </label>
+            </div>
+          </div>
+          <div class="form-group" id=q6>
+
+            <div class="form-check">
+              <h3>________ is better:</h3>
+              <input class="form-check-input" type="radio" name="drink" value="1">
+              <label class="form-check-label" for="q6">
+                tea
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="drink" value="5">
+              <label class="form-check-label" for="q6">
+                coffee
+              </label>
+            </div>
+
+          </div>
+          <div class="form-group" id=q7>
+            <div class="form-check">
+              <h3>I prefer brownie:</h3>
+              <input class="form-check-input" type="radio" name="brownie" value="1">
+              <label class="form-check-label" for="q7">
+                edges
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="brownie" value="5">
+              <label class="form-check-label" for="q7">
+                centers
+              </label>
+            </div>
+
+          </div>
+
+          <div class="form-group" id=q8>
+            <div class="form-check">
+              <h3>Pineapple on pizza is:</h3>
+              <input class="form-check-input" type="radio" name="pizza" value="1">
+              <label class="form-check-label" for="q8">
+                disgusting
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="pizza" value="5">
+              <label class="form-check-label" for="q8">
+                delicious
+              </label>
+            </div>
+          </div>
+          </form>
+          <br>
+          <div class="text-right">
+            <button type="submit" class="btn btn-primary btn-md" id="add-btn"><span class="fa fa-check-circle"></span> Find your nemesis! </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <footer class="footer">
+    <a href="../data/api/fiends">API Friends List</a>
+  </footer>
+</div>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Launch demo modal
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="resultsModal" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">You'd totally hate:</h5>
+      <div class="modal-body">
+        <h5 id=nemesisName></h5>
+        <img id="nemesisPhoto" width="600" src="">
+      </div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $("#add-btn").on("click", function(event) {
+    event.preventDefault();
+    var newMember = {
+      name: $("#name").val().trim(),
+      photo: $("#photo").val().trim(),
+      // scores: [
+        q1: $('input[name=crocs]:checked', '#myForm').val(),
+        q2: $('input[name=person]:checked', '#myForm').val(),
+        q3: $('input[name=sandwich]:checked', '#myForm').val(),
+        q4: $('input[name=toilet]:checked', '#myForm').val(),
+        q5: $('input[name=gif]:checked', '#myForm').val(),
+        q6: $('input[name=drink]:checked', '#myForm').val(),
+        q7: $('input[name=brownie]:checked', '#myForm').val(),
+        q8: $('input[name=pizza]:checked', '#myForm').val()
+      // ]
+    }
+    console.log(newMember);
+    $.post("./api/friends", newMember).done(function(data) {
+        $("#nemesisName").text(data.matchName);
+        $("#nemesisPhoto").attr("src", data.nemesisPhoto)
+        $("#resultsModal").modal("toggle");
+    });
+  });
+</script>
+
+  </body>
+</html>
