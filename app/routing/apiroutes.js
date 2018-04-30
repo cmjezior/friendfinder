@@ -1,65 +1,67 @@
-// Dependencies
-// =============================================================
+// LOAD DATA
+// We are linking our routes to a series of "data" sources.
+// These data sources hold arrays of information (info in the data folder: friends.js)
+
+var friendsData = require("../data/friends");
 var path = require("path");
-var friends = require("../data/friends.js")
 
-// // Sets up the Express App
-// // =============================================================
-// var app = express();
-// var PORT = 3000;
-//
-// // Sets up the Express app to handle data parsing
-// app.use(bodyParser.urlencoded({ extended: false }));
-// app.use(bodyParser.json());
+// ROUTING
+module.exports = function(app) {
 
-// A GET route to display a JSON of all possible friends
-// =============================================================
-app.get("/api/friends", function(req, res) {
-  res.json(friends);
-});
-
-// A POST route, used to handle incoming survey results. This route will also be used to handle the compatibility logic.
-app.post("/api/friends", function(req, res) {
-  // req.body hosts is equal to the JSON post sent from the user
-  // This works because of our body-parser middleware
-  var newMember = req.body;
-  // Using a RegEx Pattern to remove spaces from newCharacter
-  // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-  newMember.name = newMember.name.replace(/\s+/g, "").toLowerCase();
-
-  newMember.photo = newMember.photo.replace(/\s+/g, "").toLowerCase();
-
-
-  toInteger(newMember.scores);
-
-  var nemesisName = "";
-  var nemesisPhoto = "";
-  var totalDifference = 0;
-
-  for (var i = 0; i < friends.length; i++) {
-    var diff = 0;
-    for (var j = 0; j < friends[i].scores.length; j++) {
-        diff += Math.abs(friends[i].scores[j] - newMember.scores[j]);
-    }
-    if diff > totalDifference) {
-        totalDifference = diff;
-        nemesisName = friends[i].name;
-        nemesisPhoto = friends[i].photo;
-    }
-  }
-
-  friends.push(newMember);
-
-  res.json({
-    status: "ok"
-    nemesisName: nemesisName,
-    nemesisPhoto: nemesisPhoto
+  // API GET Requests
+  // Below code handles when users "visit" a page.
+  // (ex: localhost:PORT/api/admin... they are shown a JSON of the data in the table)
+  app.get("/api/friends", function(req, res) {
+    res.json(friends);
   });
 
-});
+  // API POST: setting the post for the api/friends route
+  // Below code handles when a user submits a form and thus submits data to the server.
+  // When a user submits form data (a JSON object)
+  // ...the JSON is pushed to the appropriate JavaScript array
+  // (ex. User fills out the form... this data is then sent to the server...
+  // Then the server saves the data to the friends array)
+  app.post("/api/friends", function(req, res) {
+    //variables needed for the post
+    var match = {
+			name: "",
+			image: "",
+			matchDifference: 100
+  };
+    var userData = req.body;
+    var userName = userData.name;
+    var userImage = userData.image;
+    var userScores = userData.scores;
 
-function toInteger(newMember) {
-  for (var i = 0; i < newMember.length; i++) {
-    surveyResults[i] = parseInt(newMember[i]);
-  }
-}
+    var totalDifference;
+
+  //loop through the friends array to get each friends scores
+  for(var i = 0; i < friends.length; i++){
+      var currentFriend = friends[i];
+			totalDifference = 0;
+      console.log(friends[i].name);
+ //loop through the scores
+    for (var j = 0; j < currentFriend.scores.length; j++) {
+        var currentFriendScore = currentFriend.scores[j];
+        var currentUserScore = userScores[j];
+    			console.log(currentFriend.scores[j]);
+
+      totalDifference += Math.abs(parseInt(userScores) - parseInt(currentFriendScore));
+  };
+  // If totalDifference is less then the differences of the current "match"
+				if (totalDifference <= match.matchDifference){
+          match.name = currentFriend.name;
+        match.photo = currentFriend.photo;
+        match.matchDifference = totalDifference;
+      }
+    }
+  friends.push(userData);
+  res.json(match);
+  };
+  app.post("/api/clear", function() {
+    // Empty out the arrays of data
+    friends = [];
+
+    console.log(friends);
+  });
+};
